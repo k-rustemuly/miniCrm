@@ -1,0 +1,88 @@
+version: '3.8'
+services:
+    app:
+        build:
+          dockerfile: Dockerfile
+        container_name: ${CONTAINER_NAME:-doc}
+        restart: always
+        tty: true
+        working_dir: /var/www
+        ports:
+          - ${CONTAINER_PORT:-8002}:80
+        volumes:
+          - ./deploy/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+          - ./deploy/supervisor/supervisor.conf:/etc/supervisor/conf.d/supervisor.conf
+          - ./deploy/nginx/conf.d/app.conf:/etc/nginx/sites-available/default
+          - ./storage:/var/www/storage/app
+        networks:
+          - appnet
+        depends_on:
+          - db
+          - redis
+        healthcheck:
+          test: ["CMD", "php", "-v"]
+          interval: 30s
+          timeout: 5s
+          retries: 3
+        logging:
+            driver: 'json-file'
+            options:
+              max-size: '10m'
+              max-file: '10'
+    db:
+      image: mysql:8.0
+      container_name: ${CONTAINER_NAME:-doc}_mysql
+      restart: unless-stopped
+      environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+        MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+        MYSQL_USER: ${DB_USERNAME:-laravel}
+        MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+      volumes:
+        - db_data:/var/lib/mysql
+      ports:
+        - "${DB_PORT:-3306}:3306"
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+        interval: 30s
+        timeout: 5s
+        retries: 5
+      networks:
+        - appnet
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin:latest
+      container_name: ${CONTAINER_NAME:-doc}_phpmyadmin
+      restart: unless-stopped
+      environment:
+        PMA_HOST: db
+        PMA_USER: ${DB_USERNAME:-laravel}
+        PMA_PASSWORD: ${DB_PASSWORD:-secret}
+        PMA_PORT: 3306
+      ports:
+        - "8080:80"
+      depends_on:
+        - db
+      networks:
+        - appnet
+
+    redis:
+      image: redis:7-alpine
+      container_name: ${CONTAINER_NAME:-doc}_redis
+      restart: unless-stopped
+      command: redis-server --requirepass ${REDIS_PASSWORD:-4uUG3eff2saxlkjdhjn12kgh}
+      volumes:
+        - redis_data:/data
+      healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        interval: 30s
+        timeout: 5s
+        retries: 3
+      networks:
+        - appnet
+volumes:
+  db_data:
+  redis_data:
+
+networks:
+  appnet:
+    driver: bridge
