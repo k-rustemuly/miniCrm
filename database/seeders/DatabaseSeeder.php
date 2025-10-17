@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             CustomersSeeder::class,
             TicketStatusesSeeder::class,
+            TicketsSeeder::class,
         ]);
     }
 }
