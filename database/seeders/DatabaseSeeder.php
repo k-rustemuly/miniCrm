@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UsersSeeder::class,
             CustomersSeeder::class,
+            TicketStatusesSeeder::class,
         ]);
     }
 }
