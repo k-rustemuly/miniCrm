@@ -64,9 +64,6 @@ db:
 redis:
 	$(EXEC_REDIS) redis-cli
 
-init: env up generate-key migrate seed cache-clear
-	@echo "Project builded"
-
 generate-key:
 	$(EXEC_PHP) php artisan key:generate
 
@@ -78,4 +75,10 @@ env:
 		echo  .env already exists \
 	)
 
-sync: up composer-dump-autoload clear migrate seed
+swagger:
+    $(EXEC_PHP) php artisan l5-swagger:generate
+
+init: env up generate-key migrate seed cache-clear swagger
+	@echo "Project builded"
+
+sync: up composer-dump-autoload clear migrate seed swagger

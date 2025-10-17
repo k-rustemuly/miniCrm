@@ -2,6 +2,7 @@
 
 namespace App\Module\Ticket\Requests;
 
+use App\Module\Ticket\DTO\CreateTicketDTO;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,10 +41,15 @@ class CreateTicketRequest extends FormRequest
         return [
             'phone'         => ['required', 'string', 'regex:/^\+7\d{10}$/'],
             'name'          => ['required', 'string', 'max:255'],
-            'email'         => ['required', 'string', 'email', 'max:255'],
+            'email'         => ['required', 'string', 'email', 'max:255', 'unique:customers,email'],
             'message'       => ['required', 'string'],
             'subject'       => ['required', 'string', 'max:255'],
             'attachment'    => ['sometimes', 'file'],
         ];
+    }
+
+    public function getDTO(): CreateTicketDTO
+    {
+        return CreateTicketDTO::fromRequest($this);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MessagesResource;
 use App\Module\Ticket\Requests\CreateTicketRequest;
 use App\Module\Ticket\Services\TicketService;
 
@@ -38,6 +39,9 @@ class TicketController extends Controller
      */
     public function save(CreateTicketRequest $request)
     {
+        $this->service->create($request->getDTO());
 
+        return (new MessagesResource(null))
+            ->setMessage(trans('widget.success'));
     }
 }

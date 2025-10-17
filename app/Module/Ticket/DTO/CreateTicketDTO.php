@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Module\Ticket\DTO;
 
-use App\Http\Requests\CreateTicketRequest;
 use App\Module\Customer\DTO\CreateCustomerDTO;
+use App\Module\Ticket\Requests\CreateTicketRequest;
 use Illuminate\Http\UploadedFile;
 
 final class CreateTicketDTO
