@@ -21,8 +21,8 @@ final class TicketService
     {
         $ticket = new Ticket();
 
-        $ticket->subject = $DTO->subject;
-        $ticket->message = $DTO->message;
+        $ticket->title          = $DTO->subject;
+        $ticket->description    = $DTO->message;
 
         $ticket->customer()->associate(
             $this->customerService->create($DTO->createCustomerDTO)
