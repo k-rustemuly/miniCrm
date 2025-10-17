@@ -47,6 +47,7 @@ cache-clear:
 	$(EXEC_PHP) php artisan config:clear
 	$(EXEC_PHP) php artisan route:clear
 	$(EXEC_PHP) php artisan view:clear
+    $(EXEC_PHP) php artisan permission:cache-reset
 
 clear:
 	$(EXEC_PHP) php artisan optimize:clear
