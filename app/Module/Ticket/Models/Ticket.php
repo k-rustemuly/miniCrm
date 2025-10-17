@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Carbon\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property int $id
@@ -21,9 +23,12 @@ use Carbon\Carbon;
  * @property-read Customer|null $customer
  * @property-read TicketStatus|null $ticketStatus
  */
-class Ticket extends Model
+class Ticket extends Model implements HasMedia
 {
+    /** @use HasFactory<\Database\Factories\Module\Ticket\Models\TicketFactory> */
     use HasFactory;
+
+    use InteractsWithMedia;
 
     protected $fillable = [
         'title',
