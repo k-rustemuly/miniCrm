@@ -20,7 +20,7 @@ use Carbon\Carbon;
  */
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<\Database\Factories\Module\User\Models\UserFactory> */
     use HasFactory, Notifiable, HasRoles;
 
     protected string $guard_name = 'web';

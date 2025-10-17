@@ -19,6 +19,7 @@ use Carbon\Carbon;
  */
 class Customer extends Model
 {
+    /** @use HasFactory<\Database\Factories\Module\Customer\Models\CustomerFactory> */
     use HasFactory;
 
     protected $fillable = [

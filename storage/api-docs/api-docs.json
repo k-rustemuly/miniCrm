@@ -1,0 +1,112 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ticketing System API",
+        "description": "Документация REST API проекта",
+        "contact": {
+            "name": "API Support",
+            "email": "support@example.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/tickets": {
+            "post": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Создать заявку",
+                "operationId": "createTicket",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateTicketRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Отправлено успешно"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": null
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateTicketRequest": {
+                "required": [
+                    "phone",
+                    "name",
+                    "email",
+                    "message",
+                    "subject"
+                ],
+                "properties": {
+                    "phone": {
+                        "description": "Телефон клиента",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Имя клиента",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email клиента",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "Сообщение заявки",
+                        "type": "string"
+                    },
+                    "subject": {
+                        "description": "Тема заявки",
+                        "type": "string"
+                    },
+                    "attachment": {
+                        "description": "Документ",
+                        "type": "file"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Ticket",
+            "description": "Ticket"
+        }
+    ]
+}
