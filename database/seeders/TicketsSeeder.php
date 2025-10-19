@@ -13,7 +13,7 @@ class TicketsSeeder extends Seeder
     public function run(): void
     {
         if(!Ticket::exists()) {
-            Ticket::factory()->count(20)->create();
+            Ticket::factory()->withMedia()->count(20)->create();
         }
     }
 }

@@ -26,4 +26,14 @@ class TicketFactory extends Factory
             'customer_id'   => Customer::inRandomOrder()->first()->id
         ];
     }
+
+    public function withMedia(): static
+    {
+        return $this->afterCreating(function (Ticket $ticket) {
+            $fakeImage = \Illuminate\Http\UploadedFile::fake()->image('photo.jpg', 400, 400);
+
+            $ticket->addMedia($fakeImage)
+                ->toMediaCollection('attachments');
+        });
+    }
 }
