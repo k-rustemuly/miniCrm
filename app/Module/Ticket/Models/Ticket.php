@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Carbon\Carbon;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property int $id
@@ -22,6 +23,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property Carbon|null $updated_at
  * @property-read Customer|null $customer
  * @property-read TicketStatus|null $ticketStatus
+ *
+ * @method static Builder|self answered()
+ * @method static Builder|self pending()
+ * @method static Builder|self createdBetween(Carbon $from, Carbon $to)
+ * @method static Builder|self answeredBetween(Carbon $from, Carbon $to)
  */
 class Ticket extends Model implements HasMedia
 {
@@ -58,5 +64,25 @@ class Ticket extends Model implements HasMedia
     public function ticketStatus(): BelongsTo
     {
         return $this->belongsTo(TicketStatus::class);
+    }
+
+    public function scopeAnswered(Builder $query): Builder
+    {
+        return $query->whereNotNull('answered_at');
+    }
+
+    public function scopePending(Builder $query): Builder
+    {
+        return $query->whereNull('answered_at');
+    }
+
+    public function scopeCreatedBetween(Builder $query, Carbon $from, Carbon $to): Builder
+    {
+        return $query->whereBetween('created_at', [$from->startOfDay(), $to->endOfDay()]);
+    }
+
+    public function scopeAnsweredBetween(Builder $query, Carbon $from, Carbon $to): Builder
+    {
+        return $query->whereBetween('answered_at', [$from->startOfDay(), $to->endOfDay()]);
     }
 }
