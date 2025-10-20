@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->foreignIdFor(TicketStatus::class)
-                ->default(TicketStatus::first()->id)
+                ->default(TicketStatus::first()?->id??1)
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();

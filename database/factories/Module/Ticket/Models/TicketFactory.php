@@ -23,7 +23,21 @@ class TicketFactory extends Factory
         return [
             'title'         => fake()->text(50),
             'description'   => fake()->text(200),
-            'customer_id'   => Customer::inRandomOrder()->first()->id
+            'customer_id'   => Customer::inRandomOrder()->first()->id,
+            'anwered_at'    => fake()->optional(0.7)->dateTimeBetween(
+                now()->startOfMonth(),
+                now()->endOfMonth()
+            ),
         ];
+    }
+
+    public function withMedia(): static
+    {
+        return $this->afterCreating(function (Ticket $ticket) {
+            $fakeImage = \Illuminate\Http\UploadedFile::fake()->image('photo.jpg', 400, 400);
+
+            $ticket->addMedia($fakeImage)
+                ->toMediaCollection('attachments');
+        });
     }
 }
