@@ -43,7 +43,7 @@ final class MoonShineLayout extends AppLayout
     protected function menu(): array
     {
         return [
-            ...parent::menu(),
+
         ];
     }
 

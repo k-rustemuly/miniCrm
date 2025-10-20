@@ -35,7 +35,7 @@ class Dashboard extends Page
     protected function components(): iterable
 	{
 		return [
-            LineChartMetric::make()
+            LineChartMetric::make('test')
                 ->line(['tickets' => $this->getMontlyTicketStats()])
         ];
 	}
@@ -46,7 +46,7 @@ class Dashboard extends Page
         $to = Carbon::now();
 
         return Ticket::answeredBetween($from, $to)
-            ->selectRaw('DATE(answered_at) as date, COUNT(*) as total')
+            ->selectRaw('DATE(anwered_at) as date, COUNT(*) as total')
             ->groupBy('date')
             ->orderBy('date')
             ->pluck('total', 'date')

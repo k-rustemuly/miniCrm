@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $description
  * @property int $customer_id
  * @property int $ticket_status_id
- * @property Carbon|null $answered_at
+ * @property Carbon|null $anwered_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Customer|null $customer
@@ -41,7 +41,7 @@ class Ticket extends Model implements HasMedia
         'description',
         'customer_id',
         'ticket_status_id',
-        'answered_at',
+        'anwered_at',
     ];
 
     /**
@@ -52,7 +52,7 @@ class Ticket extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'answered_at' => 'datetime',
+            'anwered_at' => 'datetime',
         ];
     }
 
@@ -68,12 +68,12 @@ class Ticket extends Model implements HasMedia
 
     public function scopeAnswered(Builder $query): Builder
     {
-        return $query->whereNotNull('answered_at');
+        return $query->whereNotNull('anwered_at');
     }
 
     public function scopePending(Builder $query): Builder
     {
-        return $query->whereNull('answered_at');
+        return $query->whereNull('anwered_at');
     }
 
     public function scopeCreatedBetween(Builder $query, Carbon $from, Carbon $to): Builder
@@ -83,6 +83,6 @@ class Ticket extends Model implements HasMedia
 
     public function scopeAnsweredBetween(Builder $query, Carbon $from, Carbon $to): Builder
     {
-        return $query->whereBetween('answered_at', [$from->startOfDay(), $to->endOfDay()]);
+        return $query->whereBetween('anwered_at', [$from->startOfDay(), $to->endOfDay()]);
     }
 }
