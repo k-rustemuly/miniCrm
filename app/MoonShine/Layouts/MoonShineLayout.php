@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Layouts;
 
+use App\Module\Ticket\Models\Ticket;
 use MoonShine\Laravel\Layouts\AppLayout;
 use MoonShine\ColorManager\ColorManager;
 use MoonShine\Contracts\ColorManager\ColorManagerContract;
@@ -30,6 +31,9 @@ use MoonShine\UI\Components\{Breadcrumbs,
     Layout\TopBar,
     Layout\Wrapper,
     When};
+use App\MoonShine\Resources\TicketStatusResource;
+use MoonShine\MenuManager\MenuItem;
+use App\MoonShine\Resources\TicketResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -43,7 +47,10 @@ final class MoonShineLayout extends AppLayout
     protected function menu(): array
     {
         return [
-
+            MenuItem::make(__('moonshine::ui.resource.ticket_status_title'), TicketStatusResource::class)
+                ->canSee(fn () => auth()->user()->hasRole('admin')),
+            MenuItem::make(__('moonshine::ui.resource.tickets_title'), TicketResource::class)
+                ->canSee(fn () => auth()->user()->can('view tickets', Ticket::newModel())),
         ];
     }
 
@@ -53,8 +60,6 @@ final class MoonShineLayout extends AppLayout
     protected function colors(ColorManagerContract $colorManager): void
     {
         parent::colors($colorManager);
-
-        // $colorManager->primary('#00000');
     }
 
     public function build(): Layout

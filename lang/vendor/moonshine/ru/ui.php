@@ -61,6 +61,8 @@ return [
         'admins_title' => 'Администраторы',
         'role_title' => 'Роли',
         'role_name' => 'Название',
+        'ticket_status_title' => 'Статусы заявок',
+        'tickets_title' => 'Заявки',
 
         'main_information' => 'Основная информация',
         'change_password' => 'Изменить пароль',
@@ -98,4 +100,11 @@ return [
         'remove_item' => 'Удалить элемент',
         'clear_all' => 'Очистить все',
     ],
+
+    'fields' => [
+        'name' => 'Название',
+        'anwered_at' => 'Дата ответа',
+        'title' => 'Заголовок',
+        'description' => 'Описание',
+    ]
 ];
