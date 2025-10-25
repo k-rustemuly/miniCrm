@@ -111,5 +111,6 @@ return [
         'phone_number' => 'Номер телефона',
         'email' => 'E-mail',
         'customer' => 'Клиент',
+        'attachments' => 'Вложения',
     ]
 ];

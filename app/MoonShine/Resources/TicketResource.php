@@ -16,6 +16,7 @@ use MoonShine\Support\Enums\PageType;
 use MoonShine\UI\Fields\Date;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Textarea;
+use VI\MoonShineSpatieMediaLibrary\Fields\MediaLibrary;
 
 /**
  * @extends ModelResource<Ticket>
@@ -57,8 +58,10 @@ class TicketResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
+                BelongsTo::make(__('moonshine::ui.fields.customer'), 'customer', fn($customer) => $customer->name, CustomerResource::class)->disabled(),
+                BelongsTo::make(__('moonshine::ui.fields.ticket_status'), 'ticketStatus', fn(TicketStatus $ticketStatus) => $ticketStatus->name, TicketStatusResource::class)->disabled(),
                 Text::make(__('moonshine::ui.fields.title'), 'title')->required(),
-                Textarea::make(__('moonshine::ui.fields.description'), 'description')->required(),
+                Textarea::make(__('moonshine::ui.fields.attachments'), 'attachments')->required(),
             ])
         ];
     }
@@ -70,6 +73,11 @@ class TicketResource extends ModelResource
     {
         return [
             ID::make(),
+            BelongsTo::make(__('moonshine::ui.fields.customer'), 'customer', fn($customer) => $customer->name, CustomerResource::class),
+            Text::make(__('moonshine::ui.fields.title'), 'title'),
+            BelongsTo::make(__('moonshine::ui.fields.ticket_status'), 'ticketStatus', fn(TicketStatus $ticketStatus) => $ticketStatus->name, TicketStatusResource::class),
+            Date::make(__('moonshine::ui.fields.anwered_at'), 'anwered_at')->format('Y-m-d H:i'),
+            MediaLibrary::make(__('moonshine::ui.fields.attachments'), 'attachments'),
         ];
     }
 

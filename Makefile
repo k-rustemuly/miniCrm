@@ -78,7 +78,10 @@ env:
 swagger:
     $(EXEC_PHP) php artisan l5-swagger:generate
 
-init: env up generate-key migrate seed cache-clear swagger
+storage-link:
+    $(EXEC_PHP) php artisan storage:link
+
+init: env up generate-key storage-link migrate seed cache-clear swagger
 	@echo "Project builded"
 
 sync: up composer-dump-autoload clear migrate seed swagger
