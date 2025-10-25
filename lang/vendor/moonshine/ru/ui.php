@@ -63,6 +63,7 @@ return [
         'role_name' => 'Название',
         'ticket_status_title' => 'Статусы заявок',
         'tickets_title' => 'Заявки',
+        'customers_title' => 'Клиенты',
 
         'main_information' => 'Основная информация',
         'change_password' => 'Изменить пароль',
@@ -106,5 +107,9 @@ return [
         'anwered_at' => 'Дата ответа',
         'title' => 'Заголовок',
         'description' => 'Описание',
+        'ticket_status' => 'Статус',
+        'phone_number' => 'Номер телефона',
+        'email' => 'E-mail',
+        'customer' => 'Клиент',
     ]
 ];

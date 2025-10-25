@@ -13,6 +13,7 @@ use App\MoonShine\Resources\MoonShineUserResource;
 use App\MoonShine\Resources\MoonShineUserRoleResource;
 use App\MoonShine\Resources\TicketStatusResource;
 use App\MoonShine\Resources\TicketResource;
+use App\MoonShine\Resources\CustomerResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 MoonShineUserRoleResource::class,
                 TicketStatusResource::class,
                 TicketResource::class,
+                CustomerResource::class,
             ])
             ->pages([
                 ...$config->getPages(),

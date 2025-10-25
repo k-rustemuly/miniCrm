@@ -34,6 +34,7 @@ use MoonShine\UI\Components\{Breadcrumbs,
 use App\MoonShine\Resources\TicketStatusResource;
 use MoonShine\MenuManager\MenuItem;
 use App\MoonShine\Resources\TicketResource;
+use App\MoonShine\Resources\CustomerResource;
 
 final class MoonShineLayout extends AppLayout
 {
@@ -51,6 +52,7 @@ final class MoonShineLayout extends AppLayout
                 ->canSee(fn () => auth()->user()->hasRole('admin')),
             MenuItem::make(__('moonshine::ui.resource.tickets_title'), TicketResource::class)
                 ->canSee(fn () => auth()->user()->can('view tickets', new Ticket())),
+            MenuItem::make(__('moonshine::ui.resource.customers_title'), CustomerResource::class),
         ];
     }
 
