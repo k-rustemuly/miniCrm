@@ -89,6 +89,9 @@ class TicketResource extends ModelResource
      */
     protected function rules(mixed $item): array
     {
-        return [];
+        return [
+            'title'         => ['required', 'string', 'max:255'],
+            'description'   => ['required', 'string'],
+        ];
     }
 }
