@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c4a53a989e5b5db8479793838f965ed",
+    "content-hash": "50c6f06fe8591e4801cab072b90f7937",
     "packages": [
         {
             "name": "brick/math",
@@ -7242,6 +7242,73 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.3.0"
             },
             "time": "2024-12-21T16:25:41+00:00"
+        },
+        {
+            "name": "visual-ideas/moonshine-spatie-medialibrary",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/visual-ideas/moonshine-spatie-medialibrary.git",
+                "reference": "3967787451bcc1d0cfc1ec90155cf4b89b5a00a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/visual-ideas/moonshine-spatie-medialibrary/zipball/3967787451bcc1d0cfc1ec90155cf4b89b5a00a8",
+                "reference": "3967787451bcc1d0cfc1ec90155cf4b89b5a00a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1|^8.2|^8.3|^8.4"
+            },
+            "conflict": {
+                "moonshine/moonshine": "<3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": [],
+                    "providers": []
+                }
+            },
+            "autoload": {
+                "files": [],
+                "psr-4": {
+                    "VI\\MoonShineSpatieMediaLibrary\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex",
+                    "email": "alex.visualideas@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Spatie\\MediaLibrary field for MoonShine Laravel admin panel",
+            "homepage": "https://moonshine.cutcode.dev/section/fields-spatie-medialibrary",
+            "keywords": [
+                "Spatie Laravel MediaLibrary",
+                "Spatie MediaLibrary",
+                "VisualIdeas",
+                "eloquent",
+                "gallery",
+                "images",
+                "laravel",
+                "media",
+                "moonshine",
+                "php",
+                "spatie",
+                "upload",
+                "vi"
+            ],
+            "support": {
+                "issues": "https://github.com/visual-ideas/moonshine-spatie-medialibrary/issues",
+                "source": "https://github.com/visual-ideas/moonshine-spatie-medialibrary"
+            },
+            "time": "2025-06-24T11:07:45+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

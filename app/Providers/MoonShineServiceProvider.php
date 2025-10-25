@@ -11,6 +11,9 @@ use MoonShine\Laravel\DependencyInjection\MoonShine;
 use MoonShine\Laravel\DependencyInjection\MoonShineConfigurator;
 use App\MoonShine\Resources\MoonShineUserResource;
 use App\MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\TicketStatusResource;
+use App\MoonShine\Resources\TicketResource;
+use App\MoonShine\Resources\CustomerResource;
 
 class MoonShineServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,9 @@ class MoonShineServiceProvider extends ServiceProvider
             ->resources([
                 MoonShineUserResource::class,
                 MoonShineUserRoleResource::class,
+                TicketStatusResource::class,
+                TicketResource::class,
+                CustomerResource::class,
             ])
             ->pages([
                 ...$config->getPages(),
