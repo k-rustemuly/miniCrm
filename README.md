@@ -28,7 +28,8 @@ make init
 
 - 🌐 **Сайт:** [http://localhost:8005](http://localhost:8005)  
 - 🗄️ **PhpMyAdmin:** [http://localhost:8080](http://localhost:8080)
-- 🗄️ **Swagger:** [http://localhost:8080/api/documentation](http://localhost:8080/api/documentation)
+- 📘 **Swagger:** [http://localhost:8080/api/documentation](http://localhost:8080/api/documentation)
+- 🛠️ **Admin panel:** [http://localhost:8080/admin](http://localhost:8080/admin)
 
 > ⚠️ **Важно:**  
 > Не забудьте отредактировать файл `.env` и заменить значения `secret` и пароли на более сложные.
