@@ -50,7 +50,7 @@ final class MoonShineLayout extends AppLayout
             MenuItem::make(__('moonshine::ui.resource.ticket_status_title'), TicketStatusResource::class)
                 ->canSee(fn () => auth()->user()->hasRole('admin')),
             MenuItem::make(__('moonshine::ui.resource.tickets_title'), TicketResource::class)
-                ->canSee(fn () => auth()->user()->can('view tickets', Ticket::newModel())),
+                ->canSee(fn () => auth()->user()->can('view tickets', new Ticket())),
         ];
     }
 
