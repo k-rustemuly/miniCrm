@@ -112,5 +112,6 @@ return [
         'email' => 'E-mail',
         'customer' => 'Клиент',
         'attachments' => 'Вложения',
+        'created_at' => 'Дата создания',
     ]
 ];
